@@ -1,0 +1,64 @@
+{
+  "DICOMWebServersConfig": [
+    {
+      "AETitle": "DCM4CHEE",
+      "QIDO-enableHTTPS": false,
+      "WADO-enableHTTPS": false,
+      "QIDO-hostname": "tws-dcm4chee.luckypig.net",
+      "WADO-hostname": "tws-dcm4chee.luckypig.net",
+      "QIDO-PORT": 8080,
+      "WADO-PORT": 8080,
+      "contentType": "application/json",
+      "timeout": 80000,
+      "charset": "UTF=8",
+      "QIDO": "dcm4chee-arc/aets/DCM4CHEE/rs",
+      "WADO-URI": "dcm4chee-arc/aets/DCM4CHEE",
+      "WADO-RS": "dcm4chee-arc/aets/DCM4CHEE/rs",
+      "WADO-RS/URI": "RS",
+      "DICOM/JPEG": "JPEG",
+      "STOW": "stow",
+      "enableRetrieveURI": false,
+      "includefield": false,
+      "enableXml2Dcm": false,
+      "Xml2DcmUrl": "/upload",
+      "target": "http://tws-dcm4chee.luckypig.net:8080/",
+      "target_wsi": "bluelight/html/start.html",
+      "token": {
+        "apikey": "",
+        "bearer": ""
+      }
+    },
+    {
+      "AETitle": "RACCOON",
+      "QIDO-enableHTTPS": false,
+      "WADO-enableHTTPS": false,
+      "QIDO-hostname": "tws-raccoon.luckypig.net",
+      "WADO-hostname": "tws-raccoon.luckypig.net",
+      "QIDO-PORT": 8081,
+      "WADO-PORT": 8081,
+      "contentType": "application/json",
+      "timeout": 80000,
+      "charset": "UTF=8",
+      "QIDO": "dicom-web",
+      "WADO-URI": "api/dicom",
+      "WADO-RS": "dicom-web",
+      "WADO-RS/URI": "RS",
+      "DICOM/JPEG": "JPEG",
+      "STOW": "stow",
+      "enableRetrieveURI": false,
+      "includefield": false,
+      "enableXml2Dcm": false,
+      "Xml2DcmUrl": "/upload",
+      "target": "http://tws-raccoon.luckypig.net:8081/",
+      "target_wsi": "bluelight/html/start.html",
+      "token": {
+        "apikey": "",
+        "bearer": ""
+      }
+    }
+  ],
+  "//_thumnail_witdth": "縮圖寬度",
+  "thumnail_witdth": 70,
+  "//_study_comparison": "進片模式",
+  "study_comparison": false
+}
