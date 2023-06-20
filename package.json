@@ -17,6 +17,7 @@
     "@mui/styles": "^5.13.2",
     "@mui/x-data-grid": "^6.7.0",
     "axios": "^1.4.0",
+    "copy-webpack-plugin": "^11.0.0",
     "date-fns": "^2.30.0",
     "i": "^0.3.7",
     "moment": "^2.29.4",

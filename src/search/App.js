@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { apiGetStudy } from "./Axios/pacsServer.js";
-import pacsServerConfig from "../public/bluelight/data/config.json";
+import pacsServerConfig from "../../public/bluelight/data/config.json";
 import DisplayTable from "./Component/DisplayTable/displayTable.js";
 import SearchBar from "./Component/SearchBar/searchBar.js";
 import PaginationComponent from "./Component/Pagination/pagination.js";

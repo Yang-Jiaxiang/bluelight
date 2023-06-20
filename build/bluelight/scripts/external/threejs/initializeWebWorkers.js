@@ -1,0 +1,1 @@
+try{window.cornerstoneWADOImageLoader.webWorkerManager.initialize({maxWebWorkers:4,startWebWorkersOnDemand:!0,webWorkerTaskPaths:[],taskConfiguration:{decodeTask:{initializeCodecsOnStartup:!0,strict:!0}}})}catch(e){throw new Error("cornerstoneWADOImageLoader is not loaded")}
