@@ -4,19 +4,27 @@ window.onload = function () {
     getByid("searchButton").onclick();
   }
   loadLdcmview(onLosdSerch);
-}
+};
 
 function PasswordCheck() {
   try {
-    var str = "" + getByid('PasswordText').value;
+    var str = "" + getByid("PasswordText").value;
     if (str && str.length == 3) {
-      if (parseInt(str.charAt(0)) * parseInt(str.charAt(2) % parseInt(str.charAt(1))) == 1) {
-        if (parseInt(str.charAt(2)) * parseInt(str.charAt(1)) + parseInt(str.charAt(0)) == 7) {
+      if (
+        parseInt(str.charAt(0)) *
+          parseInt(str.charAt(2) % parseInt(str.charAt(1))) ==
+        1
+      ) {
+        if (
+          parseInt(str.charAt(2)) * parseInt(str.charAt(1)) +
+            parseInt(str.charAt(0)) ==
+          7
+        ) {
           return true;
         }
       }
     }
-  } catch (ex) { }
+  } catch (ex) {}
   alert("wrong password");
   return false;
 }
@@ -80,14 +88,27 @@ function createTable() {
         Sex_list.push(Patient.Study[i].Series[j].Sop[k].Sex);
         BirthDate_list.push(Patient.Study[i].Series[j].Sop[k].BirthDate);
 
-        AccessionNumber_list.push(Patient.Study[i].Series[j].Sop[k].AccessionNumber);
+        AccessionNumber_list.push(
+          Patient.Study[i].Series[j].Sop[k].AccessionNumber
+        );
         //date = ("" + date).replace(/^(\d{4})(\d\d)(\d\d)$/, '$1/$2/$3');
         // time = ("" + time).replace(/^(\d{2})(\d\d)(\d\d)/, '$1:$2:$3');
         if (Patient.Study[i].Series[j].Sop[k].StudyDate != undefined)
-          StudyDate_list.push(("" + Patient.Study[i].Series[j].Sop[k].StudyDate).replace(/^(\d{4})(\d\d)(\d\d)$/, '$1/$2/$3'));
+          StudyDate_list.push(
+            ("" + Patient.Study[i].Series[j].Sop[k].StudyDate).replace(
+              /^(\d{4})(\d\d)(\d\d)$/,
+              "$1/$2/$3"
+            )
+          );
         if (Patient.Study[i].Series[j].Sop[k].StudyTime != undefined)
-          StudyTime_list.push(("" + Patient.Study[i].Series[j].Sop[k].StudyTime).replace(/^(\d{2})(\d\d)(\d\d)/, '$1:$2:$3').substr(0, 8));
-        StudyDescription_list.push(Patient.Study[i].Series[j].Sop[k].StudyDescription);
+          StudyTime_list.push(
+            ("" + Patient.Study[i].Series[j].Sop[k].StudyTime)
+              .replace(/^(\d{2})(\d\d)(\d\d)/, "$1:$2:$3")
+              .substr(0, 8)
+          );
+        StudyDescription_list.push(
+          Patient.Study[i].Series[j].Sop[k].StudyDescription
+        );
         S_list.push(Patient.Study[i].S);
         I_list.push(Patient.Study[i].I);
         SeriesAmount_list.push(Patient.Study[i].SeriesAmount);
@@ -98,7 +119,9 @@ function createTable() {
         var ModalityList1 = [];
         for (var i2 = 0; i2 < Patient.Study[i].Series.length; i2++) {
           for (var i3 = 0; i3 < Patient.Study[i].Series[i2].Sop.length; i3++) {
-            ModalityList1.push(Patient.Study[i].Series[i2].Sop[i3].ModalitiesInStudy);
+            ModalityList1.push(
+              Patient.Study[i].Series[i2].Sop[i3].ModalitiesInStudy
+            );
           }
         }
         ModalityList1 = ModalityList1.filter(function (element, index, arr) {
@@ -110,7 +133,6 @@ function createTable() {
           ModalityStr += ModalityList1[m];
         }
         Modality_list.push(ModalityStr);
-
 
         SopAmount_list.push(SopAmount1);
         StudyUID_list.push(Patient.Study[i].StudyUID);
@@ -135,7 +157,8 @@ function createTable() {
   // row0.className = "table-primary ";
   row0.style.color = "#ffffff";
   //row0.style.backgroundColor = "#203852";
-  row0.style.background = "linear-gradient(rgb(32, 56, 82), rgb(64, 82, 144), rgb(32, 56, 82))";//"linear-gradient(rgb(132, 156, 182,0.2), rgb(164, 202, 264,0.4), rgb(132, 156, 182,0.2))";
+  row0.style.background =
+    "linear-gradient(rgb(32, 56, 82), rgb(64, 82, 144), rgb(32, 56, 82))"; //"linear-gradient(rgb(132, 156, 182,0.2), rgb(164, 202, 264,0.4), rgb(132, 156, 182,0.2))";
   var cells0 = row0.insertCell(0);
   cells0.innerHTML = "Patient ID";
   var cells1 = row0.insertCell(1);
@@ -199,11 +222,9 @@ function createTable() {
     //str += "&ModalitiesInStudy=" + Null2Empty(encodeURI(Modality_list[i - 1]));
     row.Modality = Modality_list[i - 1];
     if (!Modality_list[i - 1].includes("SM"))
-      row.alt = ConfigLog.QIDO.target + '?' + str;
-    else
-      row.alt = ConfigLog.QIDO.targetSM + '?' + str;
+      row.alt = ConfigLog.QIDO.target + "?" + str;
+    else row.alt = ConfigLog.QIDO.targetSM + "?" + str;
     row.onclick = function () {
-
       if (this.Study.SeriesUrl != "") {
         getStudyObj(this.Study.DicomStudyResponse, this.Study.SeriesUrl, this);
         this.Study.SeriesUrl = "";
@@ -214,14 +235,14 @@ function createTable() {
       var Table = document.createElement("table");
       Table.id = "floatTable";
       Table.style.color = "#000000";
-      Table.style.position = "absolute"
+      Table.style.position = "absolute";
       Table.className = "table table-striped";
-      Table.style.backgroundColor = "rgb(210,222,239)"
+      Table.style.backgroundColor = "rgb(210,222,239)";
       Table.setAttribute("border", 2);
-      Table.style.borderColor = 'black';
+      Table.style.borderColor = "black";
 
-
-      for (var c = 0; c < getClass("PatientRow").length; c++)getClass("PatientRow")[c].style.height = "";
+      for (var c = 0; c < getClass("PatientRow").length; c++)
+        getClass("PatientRow")[c].style.height = "";
       //
       //var row = Table.insertRow(0);
       // var cell = row.insertCell(0); cell.innerHTML = "<b>Open This Study </b><img src='../image/icon/goto.png'></img>";
@@ -234,15 +255,17 @@ function createTable() {
       var Table2 = document.createElement("table");
       Table2.id = "floatTable2";
       Table2.style.color = "#000000";
-      Table2.style.position = "absolute"
+      Table2.style.position = "absolute";
       Table2.className = "table table-striped";
-      Table2.style.backgroundColor = "rgb(255,242,204)"
+      Table2.style.backgroundColor = "rgb(255,242,204)";
       Table2.setAttribute("border", 2);
-      Table2.style.borderColor = 'black';
+      Table2.style.borderColor = "black";
 
       var row0 = Table2.insertRow(0);
-      row0.style.background = "linear-gradient(rgb(32, 56, 82,0.1), rgb(64, 102, 164,0.7), rgb(32, 56, 82,0.1))";
-      row0.insertCell(0).innerHTML = "<img src='../image/icon/x.png' onclick='hidefloatTable()'></img>";
+      row0.style.background =
+        "linear-gradient(rgb(32, 56, 82,0.1), rgb(64, 102, 164,0.7), rgb(32, 56, 82,0.1))";
+      row0.insertCell(0).innerHTML =
+        "<img src='../image/icon/x.png' onclick='hidefloatTable()'></img>";
       row0.insertCell(1).innerHTML = "Modality";
       row0.insertCell(2).innerHTML = "Series Description";
       row0.insertCell(3).innerHTML = "Series Number";
@@ -251,16 +274,29 @@ function createTable() {
       row0.style.backgroundColor = "#203852";
 
       var row1 = Table2.insertRow(1);
-      var cell = row1.insertCell(0); cell.innerHTML = "<b>Open This Study </b><img src='../image/icon/goto.png'></img>";
+      var cell = row1.insertCell(0);
+      cell.innerHTML =
+        "<b>Open This Study </b><img src='../image/icon/goto.png'></img>";
       if (!this.Modality.includes("SM"))
-        cell.alt = ConfigLog.QIDO.target + '?' + "StudyInstanceUID=" + this.Study.StudyUID;
+        cell.alt =
+          ConfigLog.QIDO.target +
+          "?" +
+          "StudyInstanceUID=" +
+          this.Study.StudyUID;
       else
-        cell.alt = ConfigLog.QIDO.targetSM + '?' + "StudyInstanceUID=" + this.Study.StudyUID;
+        cell.alt =
+          ConfigLog.QIDO.targetSM +
+          "?" +
+          "StudyInstanceUID=" +
+          this.Study.StudyUID;
 
-      cell.onclick = function () { window.open(this.alt, '_blank'); }
-      var cell = row1.insertCell(1); cell.innerHTML = "StudyInstanceUID=" + this.Study.StudyUID;
+      cell.onclick = function () {
+        window.open(this.alt, "_blank");
+      };
+      var cell = row1.insertCell(1);
+      cell.innerHTML = "StudyInstanceUID=" + this.Study.StudyUID;
       row1.className = "SecondRow2";
-      row1.style.backgroundColor = "rgb(210,222,239)"
+      row1.style.backgroundColor = "rgb(210,222,239)";
       cell.colSpan = 4;
       //row1.style.whiteSpace = "nowrap";
       // row1.insertCell(2).innerHTML = "";
@@ -275,39 +311,79 @@ function createTable() {
         if (this.Study.Series[c].SeriesUID == undefined) {
           if (this.Study.Series.length == 1) {
             var row = Table2.insertRow(Series_c_count + 2);
-            var cell = row.insertCell(0); cell.innerHTML = undefined2null("" + "loading...");;//"<b>Open This Series </b><img src='../image/icon/goto.png'></img>";
+            var cell = row.insertCell(0);
+            cell.innerHTML = undefined2null("" + "loading..."); //"<b>Open This Series </b><img src='../image/icon/goto.png'></img>";
             if (!this.Modality.includes("SM"))
-              cell.alt = ConfigLog.QIDO.target + '?' + "StudyInstanceUID=" + this.Study.StudyUID + "&" + "SeriesInstanceUID=" + this.Study.Series[c].SeriesUID;
+              cell.alt =
+                ConfigLog.QIDO.target +
+                "?" +
+                "StudyInstanceUID=" +
+                this.Study.StudyUID +
+                "&" +
+                "SeriesInstanceUID=" +
+                this.Study.Series[c].SeriesUID;
             else
-              cell.alt = ConfigLog.QIDO.targetSM + '?' + "StudyInstanceUID=" + this.Study.StudyUID + "&" + "SeriesInstanceUID=" + this.Study.Series[c].SeriesUID;
+              cell.alt =
+                ConfigLog.QIDO.targetSM +
+                "?" +
+                "StudyInstanceUID=" +
+                this.Study.StudyUID +
+                "&" +
+                "SeriesInstanceUID=" +
+                this.Study.Series[c].SeriesUID;
 
             //cell.onclick = function () { window.open(this.alt, '_blank'); }
-            row.insertCell(1).innerHTML = undefined2null("" + "loading...");//"SeriesInstanceUID=" + this.Study.Series[c].SeriesUID;
+            row.insertCell(1).innerHTML = undefined2null("" + "loading..."); //"SeriesInstanceUID=" + this.Study.Series[c].SeriesUID;
             row.insertCell(2).innerHTML = undefined2null("" + "loading...");
             row.insertCell(3).innerHTML = undefined2null("" + "loading...");
-            row.insertCell(4).innerHTML = "" + "loading...";//this.Study.Series[c].Sop.length;
+            row.insertCell(4).innerHTML = "" + "loading..."; //this.Study.Series[c].Sop.length;
             row.setAttribute("border", 3);
-            row.style.borderColor = 'black';
+            row.style.borderColor = "black";
             row.className = "SecondRow";
             Series_c_count++;
             break;
           }
           continue;
-        };
+        }
         var row = Table2.insertRow(Series_c_count + 2);
-        var cell = row.insertCell(0); cell.innerHTML = "<b>Open This Series </b><img src='../image/icon/goto.png'></img>";
+        var cell = row.insertCell(0);
+        cell.innerHTML =
+          "<b>Open This Series </b><img src='../image/icon/goto.png'></img>";
         if (!this.Modality.includes("SM"))
-          cell.alt = ConfigLog.QIDO.target + '?' + "StudyInstanceUID=" + this.Study.StudyUID + "&" + "SeriesInstanceUID=" + this.Study.Series[c].SeriesUID;
+          cell.alt =
+            ConfigLog.QIDO.target +
+            "?" +
+            "StudyInstanceUID=" +
+            this.Study.StudyUID +
+            "&" +
+            "SeriesInstanceUID=" +
+            this.Study.Series[c].SeriesUID;
         else
-          cell.alt = ConfigLog.QIDO.targetSM + '?' + "StudyInstanceUID=" + this.Study.StudyUID + "&" + "SeriesInstanceUID=" + this.Study.Series[c].SeriesUID;
+          cell.alt =
+            ConfigLog.QIDO.targetSM +
+            "?" +
+            "StudyInstanceUID=" +
+            this.Study.StudyUID +
+            "&" +
+            "SeriesInstanceUID=" +
+            this.Study.Series[c].SeriesUID;
 
-        cell.onclick = function () { window.open(this.alt, '_blank'); }
-        row.insertCell(1).innerHTML = undefined2null("" + this.Study.Series[c].Sop[0].ModalitiesInStudy);//"SeriesInstanceUID=" + this.Study.Series[c].SeriesUID;
-        row.insertCell(2).innerHTML = undefined2null("" + this.Study.Series[c].Sop[0].SeriesDescription);
-        row.insertCell(3).innerHTML = undefined2null("" + this.Study.Series[c].Sop[0].SeriesNumber);;
-        row.insertCell(4).innerHTML = "" + undefined2null("" + this.Study.Series[c].I);;//this.Study.Series[c].Sop.length;
+        cell.onclick = function () {
+          window.open(this.alt, "_blank");
+        };
+        row.insertCell(1).innerHTML = undefined2null(
+          "" + this.Study.Series[c].Sop[0].ModalitiesInStudy
+        ); //"SeriesInstanceUID=" + this.Study.Series[c].SeriesUID;
+        row.insertCell(2).innerHTML = undefined2null(
+          "" + this.Study.Series[c].Sop[0].SeriesDescription
+        );
+        row.insertCell(3).innerHTML = undefined2null(
+          "" + this.Study.Series[c].Sop[0].SeriesNumber
+        );
+        row.insertCell(4).innerHTML =
+          "" + undefined2null("" + this.Study.Series[c].I); //this.Study.Series[c].Sop.length;
         row.setAttribute("border", 3);
-        row.style.borderColor = 'black';
+        row.style.borderColor = "black";
         row.className = "SecondRow";
         Series_c_count++;
       }
@@ -315,25 +391,51 @@ function createTable() {
       Body.appendChild(Table);
 
       try {
-        getByid("floatTable").parentNode.replaceChild(Table, getByid("floatTable"));
-        getByid("floatTable2").parentNode.replaceChild(Table2, getByid("floatTable2"));
-      } catch (ex) { console.log(ex); }
+        getByid("floatTable").parentNode.replaceChild(
+          Table,
+          getByid("floatTable")
+        );
+        getByid("floatTable2").parentNode.replaceChild(
+          Table2,
+          getByid("floatTable2")
+        );
+      } catch (ex) {
+        console.log(ex);
+      }
 
-      Table.style.marginLeft = (30) + 'px';// Table.style.marginLeft = (this.getClientRects()[0].x) - (getByid("myTable1").getClientRects()[0].x) +
-      Table2.style.marginLeft = (30) + 'px';// 
-      Table.style.marginTop = (this.getClientRects()[0].y) + (this.getClientRects()[0].height * 1) + (Table2.getClientRects()[0].height) - (getByid("myTable1").getClientRects()[0].y) + 'px';
-      Table2.style.marginTop = (parseInt(Table.style.marginTop) - 0) - (Table2.getClientRects()[0].height) + 'px';
-      Table.style.marginTop = parseFloat(Table.style.marginTop) - (Table2.getClientRects()[0].height) + (this.getClientRects()[0].height * 1) + 'px';
+      Table.style.marginLeft = 30 + "px"; // Table.style.marginLeft = (this.getClientRects()[0].x) - (getByid("myTable1").getClientRects()[0].x) +
+      Table2.style.marginLeft = 30 + "px"; //
+      Table.style.marginTop =
+        this.getClientRects()[0].y +
+        this.getClientRects()[0].height * 1 +
+        Table2.getClientRects()[0].height -
+        getByid("myTable1").getClientRects()[0].y +
+        "px";
+      Table2.style.marginTop =
+        parseInt(Table.style.marginTop) -
+        0 -
+        Table2.getClientRects()[0].height +
+        "px";
+      Table.style.marginTop =
+        parseFloat(Table.style.marginTop) -
+        Table2.getClientRects()[0].height +
+        this.getClientRects()[0].height * 1 +
+        "px";
       Table.style.zIndex = "7";
       Table2.style.zIndex = "6";
-      this.style.height = (this.getClientRects()[0].height) * (Series_c_count + 3) + (5) + "px";
-      getByid("floatTable").style.display = getByid("floatTable2").style.display = "";
+      this.style.height =
+        this.getClientRects()[0].height * (Series_c_count + 3) + 5 + "px";
+      getByid("floatTable").style.display = getByid(
+        "floatTable2"
+      ).style.display = "";
 
       var Table = getByid("myTable1");
       Body.appendChild(Table);
       try {
         getByid("myTable1").parentNode.replaceChild(Table, getByid("myTable1"));
-      } catch (ex) { console.log(ex); }
+      } catch (ex) {
+        console.log(ex);
+      }
       window.scroll(0, scrollY);
       getByid("myTable1").style.backgroundColor = "rgba(127,127,127,0.7)";
       getByid("floatTable2").style.width = "calc(100% - 30px)";
@@ -343,27 +445,36 @@ function createTable() {
   }
   getByid("loadingSpan").style.display = "none";
 
-
   try {
     if (getByid("floatTable") && getByid("floatTable2")) {
-      var table1 = getByid("floatTable"), table2 = getByid("floatTable2");
+      var table1 = getByid("floatTable"),
+        table2 = getByid("floatTable2");
       Body.appendChild(table1);
       Body.appendChild(table2);
-      getByid("floatTable").parentNode.replaceChild(table1, getByid("floatTable"));
-      getByid("floatTable2").parentNode.replaceChild(table2, getByid("floatTable2"));
+      getByid("floatTable").parentNode.replaceChild(
+        table1,
+        getByid("floatTable")
+      );
+      getByid("floatTable2").parentNode.replaceChild(
+        table2,
+        getByid("floatTable2")
+      );
     }
-  } catch (ex) { console.log(ex); }
-
+  } catch (ex) {
+    console.log(ex);
+  }
 
   Body.appendChild(Table);
   try {
     getByid("myTable1").parentNode.replaceChild(Table, getByid("myTable1"));
-  } catch (ex) { console.log(ex); }
+  } catch (ex) {
+    console.log(ex);
+  }
 }
 
 function loadLdcmview(onLosdSerch) {
   labelPadding = 5;
-  Patient.patientName = '';
+  Patient.patientName = "";
   Patient.StudyAmount = 0;
   Patient.Study = [];
   readConfigJson("../data/config.json", onLosdSerch);

@@ -1,0 +1,86 @@
+[
+  {
+    "name": "PatientName",
+    "key": "PatientName",
+    "label": "PatientName",
+    "type": "text",
+    "preset": true
+  },
+  {
+    "name": "PatientID",
+    "key": "PatientID",
+    "label": "PatientID",
+    "type": "text",
+    "preset": true
+  },
+  {
+    "name": "ModalitiesInStudy",
+    "key": "ModalitiesInStudy",
+    "label": "Modality",
+    "type": "select",
+    "options": [
+      {
+        "label": "CT",
+        "value": "CT"
+      },
+      {
+        "label": "CR",
+        "value": "CR"
+      },
+      {
+        "label": "DX",
+        "value": "DX"
+      },
+      {
+        "label": "MR",
+        "value": "MR"
+      },
+      {
+        "label": "NM",
+        "value": "NM"
+      },
+      {
+        "label": "OT",
+        "value": "OT"
+      },
+      {
+        "label": "PT",
+        "value": "PT"
+      },
+      {
+        "label": "RF",
+        "value": "RF"
+      },
+      {
+        "label": "US",
+        "value": "US"
+      },
+      {
+        "label": "XA",
+        "value": "XA"
+      }
+    ],
+    "preset": true
+  },
+  {
+    "name": "AccessionNumber",
+    "key": "AccessionNumber",
+    "label": "Accession Number",
+    "type": "text",
+    "preset": true
+  },
+  {
+    "name": "StudyInstanceUID",
+    "key": "StudyInstanceUID",
+    "label": "Study UID",
+    "type": "text",
+    "preset": true
+  },
+  {
+    "name": "StudyDate",
+    "key": "StudyDate",
+    "label": "Date",
+    "type": "rangeDate",
+    "preset": true
+  }
+]
