@@ -4,14 +4,13 @@ import pacsServerConfig from "../../public/bluelight/data/config.json";
 import DisplayTable from "./Component/DisplayTable/displayTable.js";
 import SearchBar from "./Component/SearchBar/searchBar.js";
 import PaginationComponent from "./Component/Pagination/pagination.js";
-import { Box, Fab } from "@mui/material";
+import { Box } from "@mui/material";
 import {
   getSeriesInstancesSartEnd,
   formatDate,
   mappingDataset,
   sortByDate,
 } from "./Script/index.js";
-import PreviewIcon from "@mui/icons-material/Preview";
 import useStyles from "./style.js";
 
 const DICOMServerConfig = pacsServerConfig.DICOMWebServersConfig;
@@ -81,30 +80,6 @@ const App = () => {
 
   return (
     <Box className={classes.root}>
-      <Fab
-        variant="extended"
-        sx={{
-          position: "fixed",
-          bottom: "2rem",
-          left: "2rem",
-          textTransform: "none",
-          color: "#e3e3e3",
-          backgroundImage: "linear-gradient(45deg, #3e508c 30%, #21CBF3 90%)",
-          "@media (max-width: 1080px)": {
-            "& span": {
-              display: "none",
-            },
-          },
-        }}
-        onClick={() => {
-          const iframeURL = `${DICOMServerConfig[0].target_wsi}`;
-          window.open(iframeURL, "_blank");
-        }}
-      >
-        <PreviewIcon />
-        <span style={{ marginLeft: "1rem" }}>Open Viewer</span>
-      </Fab>
-
       <SearchBar formData={formData} setFormData={setFormData} />
 
       <Box className={classes.tableRoot}>
