@@ -37,9 +37,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
     }),
-
+    new CopyWebpackPlugin({
+      patterns: [
+        // relative path is from src
+        { from: "./public/favicon.ico" }, // <- your path to favicon
+      ],
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
