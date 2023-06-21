@@ -39,7 +39,10 @@ const App = () => {
       return response.data.map((item) => {
         return {
           ...item,
-          server: DICOMWebServer.AETitle,
+          server: {
+            value: DICOMWebServer.AETitle,
+            URL: DICOMWebServer.target_wsi,
+          },
           DICOMWebServer: DICOMWebServer,
         };
       });

@@ -61,7 +61,17 @@ const DisplayTable = ({ DICOMData }) => {
       renderCell: (params) => (
         <Box sx={{ display: "flex", flexWrap: "wrap" }} spacing={1}>
           {params.row.server.map((item) => (
-            <Chip label={item} key={item} sx={{ marginRight: ".5rem" }} />
+            <Chip
+              label={item.value}
+              key={item.value}
+              sx={{ marginRight: ".5rem" }}
+              onClick={() => {
+                console.log(item.value);
+                console.log(item.URL);
+                const iframeURL = `${item.URL}?StudyInstanceUID=${params.row["0020000D"].Value[0]}`;
+                window.open(iframeURL, "_blank");
+              }}
+            />
           ))}
         </Box>
       ),
