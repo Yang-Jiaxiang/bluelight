@@ -7,13 +7,25 @@ window.onload = function () {
   html_onload();
   //執行RWD
   EnterRWD();
-}
+};
 
 function loadLdcmview() {
   //左側面板樣式初始化
-  getByid("LeftPicture").style = "display: flex;flex-direction: column;position: absolute;z-index: 9";
-  if (parseInt(getByid("LeftPicture").offsetHeight) + 10 >= window.innerHeight - document.getElementsByClassName("container")[0].offsetTop - (bordersize * 2)) { //getByid("LeftPicture").style.height=""+(window.innerHeight- document.getElementsByClassName("container")[0].offsetTop- (bordersize * 2))+"px";
-    getByid("LeftPicture").style = "overflow-y: scroll;display: flex;flex-direction: column;position: absolute;z-index: 9;height:" + (window.innerHeight - document.getElementsByClassName("container")[0].offsetTop - (bordersize * 2)) + "px;"
+  getByid("LeftPicture").style =
+    "display: flex;flex-direction: column;position: absolute;z-index: 9";
+  if (
+    parseInt(getByid("LeftPicture").offsetHeight) + 10 >=
+    window.innerHeight -
+      document.getElementsByClassName("container")[0].offsetTop -
+      bordersize * 2
+  ) {
+    //getByid("LeftPicture").style.height=""+(window.innerHeight- document.getElementsByClassName("container")[0].offsetTop- (bordersize * 2))+"px";
+    getByid("LeftPicture").style =
+      "overflow-y: scroll;display: flex;flex-direction: column;position: absolute;z-index: 9;height:" +
+      (window.innerHeight -
+        document.getElementsByClassName("container")[0].offsetTop -
+        bordersize * 2) +
+      "px;";
   }
 
   //隱藏一開始不需要的元素
@@ -23,7 +35,7 @@ function loadLdcmview() {
   getByid("textPlay").style.display = "none";
   getByid("textZoom").style.display = "none";
   getByid("SplitViewportDiv").style.display = "none";
-  getByid('MarkStyleDiv').style.display = 'none';
+  getByid("MarkStyleDiv").style.display = "none";
   getByid("GraphicStyleDiv").style.display = "none";
 
   //設定放大鏡長寬
@@ -37,7 +49,7 @@ function loadLdcmview() {
   getByid("magnifierCanvas").height = magnifierHeight;
 
   //設定裝DICOM階層資訊的物件
-  Patient.patientName = '';
+  Patient.patientName = "";
   Patient.StudyAmount = 0;
   Patient.Study = [];
 
@@ -143,15 +155,13 @@ function loadLdcmview() {
     NewDiv.canvas = function () {
       if (this.getElementsByClassName("DicomCanvas")[0])
         return this.getElementsByClassName("DicomCanvas")[0];
-      else
-        return null;
-    }
+      else return null;
+    };
     NewDiv.ctx = function () {
       if (this.getElementsByClassName("DicomCanvas")[0])
         return this.getElementsByClassName("DicomCanvas")[0].getContext("2d");
-      else
-        return null;
-    }
+      else return null;
+    };
 
     NewCanvas.id = "MarkCanvas" + i;
     NewDiv.appendChild(NewCanvas);
@@ -179,7 +189,8 @@ function loadLdcmview() {
     count++;
     var labelWC1 = document.createElement("LABEL");
     labelWC1.className = "labelWC innerLabel";
-    labelWC1.style = "position:absolute;left:115px;bottom:30px;color: white;z-index: 10;-webkit-user-select: none; ";
+    labelWC1.style =
+      "position:absolute;left:115px;bottom:30px;color: white;z-index: 10;-webkit-user-select: none; ";
     GetViewport(count - 1).appendChild(labelWC1);
   }
   count = 0;
@@ -187,7 +198,8 @@ function loadLdcmview() {
     count++;
     var labelLT1 = document.createElement("LABEL");
     labelLT1.className = "labelLT innerLabel";
-    labelLT1.style = "position:absolute;left:115px;top:10px;color: white;z-index: 10;-webkit-user-select: none; ";
+    labelLT1.style =
+      "position:absolute;left:115px;top:10px;color: white;z-index: 10;-webkit-user-select: none; ";
     GetViewport(count - 1).appendChild(labelLT1);
   }
   count = 0;
@@ -195,7 +207,8 @@ function loadLdcmview() {
     count++;
     var labelRT1 = document.createElement("LABEL");
     labelRT1.className = "labelRT innerLabel";
-    labelRT1.style = "position:absolute;right:20px;top:10px;color: white;z-index: 10;-webkit-user-select: none;text-align:right;";
+    labelRT1.style =
+      "position:absolute;right:20px;top:10px;color: white;z-index: 10;-webkit-user-select: none;text-align:right;";
     GetViewport(count - 1).appendChild(labelRT1);
   }
   count = 0;
@@ -203,7 +216,8 @@ function loadLdcmview() {
     count++;
     var labelRB1 = document.createElement("LABEL");
     labelRB1.className = "labelRB innerLabel";
-    labelRB1.style = "position:absolute;right:20px;bottom:20px;color: white;z-index: 10;-webkit-user-select: none;text-align:right;";
+    labelRB1.style =
+      "position:absolute;right:20px;bottom:20px;color: white;z-index: 10;-webkit-user-select: none;text-align:right;";
     GetViewport(count - 1).appendChild(labelRB1);
   }
   count = 0;
@@ -211,7 +225,8 @@ function loadLdcmview() {
     count++;
     var labelXY1 = document.createElement("LABEL");
     labelXY1.className = "labelXY innerLabel";
-    labelXY1.style = "position:absolute;left:115px;bottom:10px;color: white;z-index: 10;-webkit-user-select: none; ";
+    labelXY1.style =
+      "position:absolute;left:115px;bottom:10px;color: white;z-index: 10;-webkit-user-select: none; ";
     labelXY1.innerText = "X: " + 0 + " Y: " + 0;
     GetViewport(count - 1).appendChild(labelXY1);
   }
@@ -241,7 +256,6 @@ function loadLdcmview() {
   displayAnnotation();
 }
 
-
 function getParameterByName(name) {
   name = name.replace(/\[\[]/g, "\\[").replace(/\[\]]/g, "\\]");
   var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -260,18 +274,28 @@ function getParameterByName(name) {
 }
 
 function setLabelPadding() {
-  labelPadding = isNaN(parseInt(DicomTags.labelPadding)) ? 5 : parseInt(DicomTags.labelPadding);
-  leftLabelPadding = isNaN(parseInt(DicomTags.leftLabelPadding)) ? labelPadding : parseInt(DicomTags.leftLabelPadding);
-  rightLabelPadding = isNaN(parseInt(DicomTags.rightLabelPadding)) ? labelPadding : parseInt(DicomTags.rightLabelPadding);
-  topLabelPadding = isNaN(parseInt(DicomTags.topLabelPadding)) ? labelPadding : parseInt(DicomTags.topLabelPadding);
-  bottomLabelPadding = isNaN(parseInt(DicomTags.bottomLabelPadding)) ? labelPadding : parseInt(DicomTags.bottomLabelPadding);
+  labelPadding = isNaN(parseInt(DicomTags.labelPadding))
+    ? 5
+    : parseInt(DicomTags.labelPadding);
+  leftLabelPadding = isNaN(parseInt(DicomTags.leftLabelPadding))
+    ? labelPadding
+    : parseInt(DicomTags.leftLabelPadding);
+  rightLabelPadding = isNaN(parseInt(DicomTags.rightLabelPadding))
+    ? labelPadding
+    : parseInt(DicomTags.rightLabelPadding);
+  topLabelPadding = isNaN(parseInt(DicomTags.topLabelPadding))
+    ? labelPadding
+    : parseInt(DicomTags.topLabelPadding);
+  bottomLabelPadding = isNaN(parseInt(DicomTags.bottomLabelPadding))
+    ? labelPadding
+    : parseInt(DicomTags.bottomLabelPadding);
 }
 
 function readDicomTags(url, setLabelPadding) {
   //讀取DICOM Tags設定檔
   var request = new XMLHttpRequest();
-  request.open('GET', url);
-  request.responseType = 'json';
+  request.open("GET", url);
+  request.responseType = "json";
   request.send();
   var dicomtags = {};
   //LT代表left  top
@@ -280,50 +304,62 @@ function readDicomTags(url, setLabelPadding) {
   //RB代表right bottom
   request.onload = function () {
     var DicomResponse = request.response["default"];
-    dicomtags.labelPadding = parseInt(DicomResponse["labelPadding"]) ? parseInt(DicomResponse["labelPadding"]) : 5;
-    dicomtags.leftLabelPadding = parseInt(DicomResponse["leftLabelPadding"]) ? parseInt(DicomResponse["leftLabelPadding"]) : dicomtags.labelPadding;
-    dicomtags.rightLabelPadding = parseInt(DicomResponse["rightLabelPadding"]) ? parseInt(DicomResponse["rightLabelPadding"]) : dicomtags.labelPadding;
-    dicomtags.topLabelPadding = parseInt(DicomResponse["topLabelPadding"]) ? parseInt(DicomResponse["topLabelPadding"]) : dicomtags.labelPadding;
-    dicomtags.bottomLabelPadding = parseInt(DicomResponse["bottomLabelPadding"]) ? parseInt(DicomResponse["bottomLabelPadding"]) : dicomtags.labelPadding;
+    dicomtags.labelPadding = parseInt(DicomResponse["labelPadding"])
+      ? parseInt(DicomResponse["labelPadding"])
+      : 5;
+    dicomtags.leftLabelPadding = parseInt(DicomResponse["leftLabelPadding"])
+      ? parseInt(DicomResponse["leftLabelPadding"])
+      : dicomtags.labelPadding;
+    dicomtags.rightLabelPadding = parseInt(DicomResponse["rightLabelPadding"])
+      ? parseInt(DicomResponse["rightLabelPadding"])
+      : dicomtags.labelPadding;
+    dicomtags.topLabelPadding = parseInt(DicomResponse["topLabelPadding"])
+      ? parseInt(DicomResponse["topLabelPadding"])
+      : dicomtags.labelPadding;
+    dicomtags.bottomLabelPadding = parseInt(DicomResponse["bottomLabelPadding"])
+      ? parseInt(DicomResponse["bottomLabelPadding"])
+      : dicomtags.labelPadding;
 
     dicomtags.LT = {};
     dicomtags.LT.name = [];
     dicomtags.LT.tag = [];
     for (var i = 0; i < DicomResponse["LT"].length; i++) {
-      dicomtags.LT.name.push(DicomResponse["LT"][i].name)
-      dicomtags.LT.tag.push(DicomResponse["LT"][i].tag)
+      dicomtags.LT.name.push(DicomResponse["LT"][i].name);
+      dicomtags.LT.tag.push(DicomResponse["LT"][i].tag);
     }
     dicomtags.RT = {};
     dicomtags.RT.name = [];
     dicomtags.RT.tag = [];
     for (var i = 0; i < DicomResponse["RT"].length; i++) {
-      dicomtags.RT.name.push(DicomResponse["RT"][i].name)
-      dicomtags.RT.tag.push(DicomResponse["RT"][i].tag)
+      dicomtags.RT.name.push(DicomResponse["RT"][i].name);
+      dicomtags.RT.tag.push(DicomResponse["RT"][i].tag);
     }
     dicomtags.LB = {};
     dicomtags.LB.name = [];
     dicomtags.LB.tag = [];
     for (var i = 0; i < DicomResponse["LB"].length; i++) {
-      dicomtags.LB.name.push(DicomResponse["LB"][i].name)
-      dicomtags.LB.tag.push(DicomResponse["LB"][i].tag)
+      dicomtags.LB.name.push(DicomResponse["LB"][i].name);
+      dicomtags.LB.tag.push(DicomResponse["LB"][i].tag);
     }
     dicomtags.RB = {};
     dicomtags.RB.name = [];
     dicomtags.RB.tag = [];
     for (var i = 0; i < DicomResponse["RB"].length; i++) {
-      dicomtags.RB.name.push(DicomResponse["RB"][i].name)
-      dicomtags.RB.tag.push(DicomResponse["RB"][i].tag)
+      dicomtags.RB.name.push(DicomResponse["RB"][i].name);
+      dicomtags.RB.tag.push(DicomResponse["RB"][i].tag);
     }
     //指派至全域變數
     Object.assign(DicomTags, dicomtags);
     if (setLabelPadding) setLabelPadding();
-  }
+  };
 }
 
 function operateQueryString(queryString) {
   var TAG_LIST = [];
   var NewQueryString = "";
-  for (var key in TAG_DICT) { TAG_LIST.push(TAG_DICT[key]["name"]) };
+  for (var key in TAG_DICT) {
+    TAG_LIST.push(TAG_DICT[key]["name"]);
+  }
   for (var i = 0; i < queryString.split("&").length; i++) {
     if (TAG_LIST.includes(queryString.split("&")[i].split("=")[0])) {
       if (i != 0) NewQueryString += "&";
@@ -338,14 +374,25 @@ function readAllJson(readJson) {
   var queryString = ("" + location.search).replace("?", "");
   queryString = operateQueryString(queryString);
   if (queryString.length > 0) {
-    var url = ConfigLog.QIDO.https + "://" + ConfigLog.QIDO.hostname + ":" + ConfigLog.QIDO.PORT + "/" + ConfigLog.QIDO.service + "/series" + "?" + queryString + "";
+    var url =
+      ConfigLog.QIDO.https +
+      "://" +
+      ConfigLog.QIDO.hostname +
+      ":" +
+      ConfigLog.QIDO.PORT +
+      "/" +
+      ConfigLog.QIDO.service +
+      "/series" +
+      "?" +
+      queryString +
+      "";
     url = fitUrl(url);
     readJson(url);
   }
 }
 
 function fitUrl(url) {
-  url = url.replace('?&', '?');
+  url = url.replace("?&", "?");
   url = url.replace("http://http://", "http://");
   url = url.replace("https://http://", "https://");
   url = url.replace("http://https://", "http://");
@@ -353,21 +400,34 @@ function fitUrl(url) {
   return url;
 }
 
+function getDICOMWebServersConfig(AllDICOMWebServersConfig, AETitle) {
+  const result =
+    AllDICOMWebServersConfig.filter((item) => item.AETitle == AETitle).length >
+    0
+      ? AllDICOMWebServersConfig.filter((item) => item.AETitle == AETitle)
+      : AllDICOMWebServersConfig;
+
+  return result;
+}
+
 function readConfigJson(url, readAllJson, readJson) {
   //載入config檔的設定，包含伺服器、請求協定、類型...等等
   var config = {};
   var request = new XMLHttpRequest();
-  request.open('GET', url);
-  request.responseType = 'json';
+  request.open("GET", url);
+  request.responseType = "json";
   request.send();
   request.onload = function () {
     var DicomResponse = request.response;
     config.QIDO = {};
 
-    tempResponse = DicomResponse["DICOMWebServersConfig"][0];
-    tempConfig = config.QIDO
+    tempResponse = getDICOMWebServersConfig(
+      DicomResponse["DICOMWebServersConfig"]
+    )[0];
+    tempConfig = config.QIDO;
     tempConfig.hostname = tempResponse["QIDO-hostname"];
-    tempConfig.https = tempResponse["QIDO-enableHTTPS"] == true ? "https" : "http";
+    tempConfig.https =
+      tempResponse["QIDO-enableHTTPS"] == true ? "https" : "http";
     tempConfig.PORT = tempResponse["QIDO-PORT"];
     tempConfig.service = tempResponse["QIDO"];
     tempConfig.contentType = tempResponse["contentType"];
@@ -381,13 +441,18 @@ function readConfigJson(url, readAllJson, readJson) {
 
     config.WADO = {};
     tempConfig = config.WADO;
-    tempResponse = DicomResponse["DICOMWebServersConfig"][0];
+    tempResponse = getDICOMWebServersConfig(
+      DicomResponse["DICOMWebServersConfig"]
+    )[0];
     tempConfig.hostname = tempResponse["WADO-hostname"];
-    tempConfig.https = tempResponse["WADO-enableHTTPS"] == true ? "https" : "http";
+    tempConfig.https =
+      tempResponse["WADO-enableHTTPS"] == true ? "https" : "http";
     tempConfig.PORT = tempResponse["WADO-PORT"];
     tempConfig.WADOType = tempResponse["WADO-RS/URI"];
-    if (tempConfig.WADOType == "URI") tempConfig.service = tempResponse["WADO-URI"];
-    else if (tempConfig.WADOType == "RS") tempConfig.service = tempResponse["WADO-RS"];
+    if (tempConfig.WADOType == "URI")
+      tempConfig.service = tempResponse["WADO-URI"];
+    else if (tempConfig.WADOType == "RS")
+      tempConfig.service = tempResponse["WADO-RS"];
     else tempConfig.service = tempResponse["WADO-URI"];
     tempConfig.contentType = tempResponse["contentType"];
     tempConfig.timeout = tempResponse["timeout"];
@@ -400,7 +465,9 @@ function readConfigJson(url, readAllJson, readJson) {
 
     config.STOW = {};
     tempConfig = config.STOW;
-    tempResponse = DicomResponse["DICOMWebServersConfig"][0];
+    tempResponse = getDICOMWebServersConfig(
+      DicomResponse["DICOMWebServersConfig"]
+    )[0];
     tempConfig.hostname = tempResponse["hostname"];
     tempConfig.https = tempResponse["enableHTTPS"] == true ? "https" : "http";
     tempConfig.PORT = tempResponse["PORT"];
@@ -423,7 +490,7 @@ function readConfigJson(url, readAllJson, readJson) {
     configOnload = true;
 
     readAllJson(readJson);
-  }
+  };
 }
 
 function getValue(obj) {
@@ -438,8 +505,11 @@ function getJsonByInstanceRequest(SeriesResponse, InstanceRequest, instance) {
   //取得最小的Instance Number
   for (var i = 0; i < DicomResponse.length; i++) {
     try {
-      if (getValue(DicomResponse[i]["00200013"]) < min) min = getValue(DicomResponse[i]["00200013"]);
-    } catch (ex) { console.log(ex); };
+      if (getValue(DicomResponse[i]["00200013"]) < min)
+        min = getValue(DicomResponse[i]["00200013"]);
+    } catch (ex) {
+      console.log(ex);
+    }
   }
   //StudyUID:0020000d,Series UID:0020000e,SOP UID:00080018,
   //Instance Number:00200013,影像檔編碼資料:imageId,PatientId:00100020
@@ -448,22 +518,49 @@ function getJsonByInstanceRequest(SeriesResponse, InstanceRequest, instance) {
   for (var i = 0; i < DicomResponse.length; i++) {
     //取得WADO的路徑
     if (ConfigLog.WADO.WADOType == "URI") {
-      var url = ConfigLog.WADO.https + "://" + ConfigLog.WADO.hostname + ":" + ConfigLog.WADO.PORT + "/" + ConfigLog.WADO.service + "?requestType=WADO&" +
-        "studyUID=" + DicomResponse[i]["0020000D"].Value[0] +
-        "&seriesUID=" + DicomResponse[i]["0020000E"].Value[0] +
-        "&objectUID=" + DicomResponse[i]["00080018"].Value[0] +
-        "&contentType=" + "application/dicom";
+      var url =
+        ConfigLog.WADO.https +
+        "://" +
+        ConfigLog.WADO.hostname +
+        ":" +
+        ConfigLog.WADO.PORT +
+        "/" +
+        ConfigLog.WADO.service +
+        "?requestType=WADO&" +
+        "studyUID=" +
+        DicomResponse[i]["0020000D"].Value[0] +
+        "&seriesUID=" +
+        DicomResponse[i]["0020000E"].Value[0] +
+        "&objectUID=" +
+        DicomResponse[i]["00080018"].Value[0] +
+        "&contentType=" +
+        "application/dicom";
     } else if (ConfigLog.WADO.WADOType == "RS") {
-      var url = ConfigLog.WADO.https + "://" + ConfigLog.WADO.hostname + ":" + ConfigLog.WADO.PORT + "/" + ConfigLog.WADO.service +
-        "/studies/" + DicomResponse[i]["0020000D"].Value[0] +
-        "/series/" + DicomResponse[i]["0020000E"].Value[0] +
-        "/instances/" + DicomResponse[i]["00080018"].Value[0];
+      var url =
+        ConfigLog.WADO.https +
+        "://" +
+        ConfigLog.WADO.hostname +
+        ":" +
+        ConfigLog.WADO.PORT +
+        "/" +
+        ConfigLog.WADO.service +
+        "/studies/" +
+        DicomResponse[i]["0020000D"].Value[0] +
+        "/series/" +
+        DicomResponse[i]["0020000E"].Value[0] +
+        "/instances/" +
+        DicomResponse[i]["00080018"].Value[0];
     }
 
     url = fitUrl(url);
     //如果包含標記，則載入標記
-    if (DicomResponse[i]["00080016"]) { //&& getValue(DicomResponse[i]["00080016"]) == '1.2.840.10008.5.1.4.1.1.481.3') {
-      try { readDicom(url, PatientMark); } catch (ex) { console.log(ex); };
+    if (DicomResponse[i]["00080016"]) {
+      //&& getValue(DicomResponse[i]["00080016"]) == '1.2.840.10008.5.1.4.1.1.481.3') {
+      try {
+        readDicom(url, PatientMark);
+      } catch (ex) {
+        console.log(ex);
+      }
     }
     try {
       //cornerstone的WADO請求需要加"wadouri"
@@ -477,14 +574,16 @@ function getJsonByInstanceRequest(SeriesResponse, InstanceRequest, instance) {
           sop: getValue(DicomResponse[i]["00080018"]),
           instance: getValue(DicomResponse[i]["00200013"]),
           imageId: url,
-          patientId: getValue(DicomResponse[i]["00100020"])
+          patientId: getValue(DicomResponse[i]["00100020"]),
         };
         // if (ConfigLog.WADO.WADOType == "URI") loadUID(DICOM_obj);
         //預載入DICOM至Viewport
         if (ConfigLog.WADO.WADOType == "URI") loadAndViewImage(url);
         else if (ConfigLog.WADO.WADOType == "RS") wadorsLoader(url);
       }
-    } catch (ex) { console.log(ex); }
+    } catch (ex) {
+      console.log(ex);
+    }
   }
   //StudyUID:0020000d,Series UID:0020000e,SOP UID:00080018,
   //Instance Number:00200013,影像檔編碼資料:imageId,PatientId:00100020
@@ -492,16 +591,38 @@ function getJsonByInstanceRequest(SeriesResponse, InstanceRequest, instance) {
   //載入其餘所有影像
   function loadDicom(i) {
     if (ConfigLog.WADO.WADOType == "URI") {
-      var url = ConfigLog.WADO.https + "://" + ConfigLog.WADO.hostname + ":" + ConfigLog.WADO.PORT + "/" + ConfigLog.WADO.service + "?requestType=WADO&" +
-        "studyUID=" + DicomResponse[i]["0020000D"].Value[0] +
-        "&seriesUID=" + DicomResponse[i]["0020000E"].Value[0] +
-        "&objectUID=" + DicomResponse[i]["00080018"].Value[0] +
-        "&contentType=" + "application/dicom";
+      var url =
+        ConfigLog.WADO.https +
+        "://" +
+        ConfigLog.WADO.hostname +
+        ":" +
+        ConfigLog.WADO.PORT +
+        "/" +
+        ConfigLog.WADO.service +
+        "?requestType=WADO&" +
+        "studyUID=" +
+        DicomResponse[i]["0020000D"].Value[0] +
+        "&seriesUID=" +
+        DicomResponse[i]["0020000E"].Value[0] +
+        "&objectUID=" +
+        DicomResponse[i]["00080018"].Value[0] +
+        "&contentType=" +
+        "application/dicom";
     } else if (ConfigLog.WADO.WADOType == "RS") {
-      var url = ConfigLog.WADO.https + "://" + ConfigLog.WADO.hostname + ":" + ConfigLog.WADO.PORT + "/" + ConfigLog.WADO.service +
-        "/studies/" + DicomResponse[i]["0020000D"].Value[0] +
-        "/series/" + DicomResponse[i]["0020000E"].Value[0] +
-        "/instances/" + DicomResponse[i]["00080018"].Value[0];
+      var url =
+        ConfigLog.WADO.https +
+        "://" +
+        ConfigLog.WADO.hostname +
+        ":" +
+        ConfigLog.WADO.PORT +
+        "/" +
+        ConfigLog.WADO.service +
+        "/studies/" +
+        DicomResponse[i]["0020000D"].Value[0] +
+        "/series/" +
+        DicomResponse[i]["0020000E"].Value[0] +
+        "/instances/" +
+        DicomResponse[i]["00080018"].Value[0];
     }
     url = fitUrl(url);
     try {
@@ -514,57 +635,88 @@ function getJsonByInstanceRequest(SeriesResponse, InstanceRequest, instance) {
         sop: getValue(DicomResponse[i]["00080018"]),
         instance: getValue(DicomResponse[i]["00200013"]),
         imageId: url,
-        patientId: getValue(DicomResponse[i]["00100020"])
+        patientId: getValue(DicomResponse[i]["00100020"]),
       };
       //預載入DICOM至Viewport
       if (ConfigLog.WADO.WADOType == "RS") wadorsLoader(url, true);
       else onlyLoadImage(url);
 
       try {
-        if (getValue(DicomResponse[i]["00080060"]) == 'PR' || getValue(SeriesResponse[instance]["00080060"]) == 'PR') {
-
-          function load(time) { return new Promise((resolve) => setTimeout(resolve, time)); }
+        if (
+          getValue(DicomResponse[i]["00080060"]) == "PR" ||
+          getValue(SeriesResponse[instance]["00080060"]) == "PR"
+        ) {
+          function load(time) {
+            return new Promise((resolve) => setTimeout(resolve, time));
+          }
 
           load(100).then(() => {
             //readXML(url);
             readDicom(url.replace("wadouri:", ""), PatientMark, true);
           });
         }
+      } catch (ex) {
+        console.log(ex);
       }
-      catch (ex) { console.log(ex); }
-    } catch (ex) { console.log(ex); }
+    } catch (ex) {
+      console.log(ex);
+    }
   }
-  function wait(time) { return new Promise((resolve) => setTimeout(resolve, time)); }
+  function wait(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
   for (var i = 0; i < DicomResponse.length; i++) {
     const i_ = i;
-    wait(parseInt(i_ / 50) * 2000).then(() => { loadDicom(i_); });
+    wait(parseInt(i_ / 50) * 2000).then(() => {
+      loadDicom(i_);
+    });
   }
 }
 function getJsonBySeriesRequest(SeriesRequest) {
-  let SeriesResponse = SeriesRequest.response, InstanceUrl = "";
+  let SeriesResponse = SeriesRequest.response,
+    InstanceUrl = "";
   for (let instance = 0; instance < SeriesResponse.length; instance++) {
-    if (ConfigLog.QIDO.enableRetrieveURI == true) InstanceUrl = SeriesResponse[instance]["00081190"].Value[0] + "/instances";
-    else InstanceUrl = fitUrl(ConfigLog.QIDO.https + "://" + ConfigLog.QIDO.hostname + ":" + ConfigLog.QIDO.PORT + "/" + ConfigLog.QIDO.service) +
-      "/studies/" + SeriesResponse[instance]["0020000D"].Value[0] +
-      "/series/" + SeriesResponse[instance]["0020000E"].Value[0] + "/instances";
+    if (ConfigLog.QIDO.enableRetrieveURI == true)
+      InstanceUrl =
+        SeriesResponse[instance]["00081190"].Value[0] + "/instances";
+    else
+      InstanceUrl =
+        fitUrl(
+          ConfigLog.QIDO.https +
+            "://" +
+            ConfigLog.QIDO.hostname +
+            ":" +
+            ConfigLog.QIDO.PORT +
+            "/" +
+            ConfigLog.QIDO.service
+        ) +
+        "/studies/" +
+        SeriesResponse[instance]["0020000D"].Value[0] +
+        "/series/" +
+        SeriesResponse[instance]["0020000E"].Value[0] +
+        "/instances";
 
     if (ConfigLog.WADO.includefield == true) InstanceUrl += "?includefield=all";
-    if (ConfigLog.WADO.https == "https") InstanceUrl = InstanceUrl.replace("http:", "https:");
+    if (ConfigLog.WADO.https == "https")
+      InstanceUrl = InstanceUrl.replace("http:", "https:");
     let InstanceRequest = new XMLHttpRequest();
-    InstanceRequest.open('GET', InstanceUrl);
-    InstanceRequest.responseType = 'json';
+    InstanceRequest.open("GET", InstanceUrl);
+    InstanceRequest.responseType = "json";
     //發送以Instance為單位的請求
     var wadoToken = ConfigLog.WADO.token;
     for (var to = 0; to < Object.keys(wadoToken).length; to++) {
       if (wadoToken[Object.keys(wadoToken)[to]] != "") {
-        InstanceRequest.setRequestHeader("" + Object.keys(wadoToken)[to], "" + wadoToken[Object.keys(wadoToken)[to]]);
+        InstanceRequest.setRequestHeader(
+          "" + Object.keys(wadoToken)[to],
+          "" + wadoToken[Object.keys(wadoToken)[to]]
+        );
       }
     }
     const instance_ = instance;
     InstanceRequest.send();
     InstanceRequest.onload = function () {
       getJsonByInstanceRequest(SeriesResponse, InstanceRequest, instance_);
-    }
+    };
   }
 }
 
@@ -572,12 +724,15 @@ function readJson(url) {
   //向伺服器請求資料
   if (ConfigLog.WADO.https == "https") url = url.replace("http:", "https:");
   let SeriesRequest = new XMLHttpRequest();
-  SeriesRequest.open('GET', url);
-  SeriesRequest.responseType = 'json';
+  SeriesRequest.open("GET", url);
+  SeriesRequest.responseType = "json";
   var wadoToken = ConfigLog.WADO.token;
   for (var to = 0; to < Object.keys(wadoToken).length; to++) {
     if (wadoToken[Object.keys(wadoToken)[to]] != "") {
-      SeriesRequest.setRequestHeader("" + Object.keys(wadoToken)[to], "" + wadoToken[Object.keys(wadoToken)[to]]);
+      SeriesRequest.setRequestHeader(
+        "" + Object.keys(wadoToken)[to],
+        "" + wadoToken[Object.keys(wadoToken)[to]]
+      );
     }
   }
 
@@ -585,5 +740,5 @@ function readJson(url) {
   SeriesRequest.send();
   SeriesRequest.onload = function () {
     getJsonBySeriesRequest(SeriesRequest);
-  }
+  };
 }

@@ -21,7 +21,7 @@ const DisplayTable = ({ DICOMData }) => {
             width={150}
             height={100}
             onClick={() => {
-              const iframeURL = `${params.row.DICOMWebServer.target_wsi}?StudyInstanceUID=${params.row["0020000D"].Value[0]}`;
+              const iframeURL = `${params.row.DICOMWebServer.target_wsi}?StudyInstanceUID=${params.row["0020000D"].Value[0]}&DICOMWebServersConfig=001`;
               window.open(iframeURL, "_blank");
             }}
           />
