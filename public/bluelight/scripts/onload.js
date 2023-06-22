@@ -407,10 +407,14 @@ function getDICOMWebServersConfig(AllDICOMWebServersConfig, AETitle) {
       ? AllDICOMWebServersConfig.filter((item) => item.AETitle == AETitle)
       : AllDICOMWebServersConfig;
 
-  return result;
+  return result[0];
 }
 
 function readConfigJson(url, readAllJson, readJson) {
+  //讀取config檔，透過url params取得serverAEtitle，讓config檔只載入一個伺服器的設定
+  const urlParams = new URLSearchParams(window.location.search);
+  const serverAEtitle = urlParams.get("serverAEtitle");
+
   //載入config檔的設定，包含伺服器、請求協定、類型...等等
   var config = {};
   var request = new XMLHttpRequest();
@@ -422,8 +426,9 @@ function readConfigJson(url, readAllJson, readJson) {
     config.QIDO = {};
 
     tempResponse = getDICOMWebServersConfig(
-      DicomResponse["DICOMWebServersConfig"]
-    )[0];
+      DicomResponse["DICOMWebServersConfig"],
+      serverAEtitle
+    );
     tempConfig = config.QIDO;
     tempConfig.hostname = tempResponse["QIDO-hostname"];
     tempConfig.https =
@@ -442,8 +447,9 @@ function readConfigJson(url, readAllJson, readJson) {
     config.WADO = {};
     tempConfig = config.WADO;
     tempResponse = getDICOMWebServersConfig(
-      DicomResponse["DICOMWebServersConfig"]
-    )[0];
+      DicomResponse["DICOMWebServersConfig"],
+      serverAEtitle
+    );
     tempConfig.hostname = tempResponse["WADO-hostname"];
     tempConfig.https =
       tempResponse["WADO-enableHTTPS"] == true ? "https" : "http";
@@ -466,8 +472,9 @@ function readConfigJson(url, readAllJson, readJson) {
     config.STOW = {};
     tempConfig = config.STOW;
     tempResponse = getDICOMWebServersConfig(
-      DicomResponse["DICOMWebServersConfig"]
-    )[0];
+      DicomResponse["DICOMWebServersConfig"],
+      serverAEtitle
+    );
     tempConfig.hostname = tempResponse["hostname"];
     tempConfig.https = tempResponse["enableHTTPS"] == true ? "https" : "http";
     tempConfig.PORT = tempResponse["PORT"];

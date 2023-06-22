@@ -66,9 +66,7 @@ const DisplayTable = ({ DICOMData }) => {
               key={item.value}
               sx={{ marginRight: ".5rem" }}
               onClick={() => {
-                console.log(item.value);
-                console.log(item.URL);
-                const iframeURL = `${item.URL}?StudyInstanceUID=${params.row["0020000D"].Value[0]}`;
+                const iframeURL = `${item.URL}?serverAEtitle=${item.value}&StudyInstanceUID=${params.row["0020000D"].Value[0]}`;
                 window.open(iframeURL, "_blank");
               }}
             />
